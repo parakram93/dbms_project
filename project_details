@@ -1,0 +1,56 @@
+1. ENTITY LIST
+a) Cow
+b) FeedSchedule
+c) HealthRecord
+d) MilkProduction
+e) MilkSale
+
+
+2. Database Schema (with Data Types)
+COW.
+
+| Field         | Type        | Constraints |
+| ------------- | ----------- | ----------- |
+| cow_id        | INT         | PK          |
+| breed         | VARCHAR(50) | NOT NULL    |
+| age           | INT         | NOT NULL    |
+| health_status | VARCHAR(50) | NOT NULL    |
+
+
+FeedSchedule
+| Field     | Type        | Constraints      |
+| --------- | ----------- | ---------------- |
+| feed_id   | INT         | PK               |
+| cow_id    | INT         | FK → Cow(cow_id) |
+| feed_type | VARCHAR(50) | NOT NULL         |
+| feed_time | TIME        | NOT NULL         |
+
+
+HealthRecord
+| Field        | Type         | Constraints      |
+| ------------ | ------------ | ---------------- |
+| record_id    | INT          | PK               |
+| cow_id       | INT          | FK → Cow(cow_id) |
+| checkup_date | DATE         | NOT NULL         |
+| diagnosis    | VARCHAR(255) |                  |
+| treatment    | VARCHAR(255) |                  |
+
+
+MilkProduction
+| Field           | Type         | Constraints      |
+| --------------- | ------------ | ---------------- |
+| production_id   | INT          | PK               |
+| cow_id          | INT          | FK → Cow(cow_id) |
+| production_date | DATE         | NOT NULL         |
+| liters          | DECIMAL(5,2) | NOT NULL         |
+
+
+MilkSale
+
+| Field         | Type         | Constraints                        |
+| ------------- | ------------ | ---------------------------------- |
+| sale_id       | INT          | PK                                 |
+| production_id | INT          | FK → MilkProduction(production_id) |
+| customer_name | VARCHAR(100) | NOT NULL                           |
+| sale_date     | DATE         | NOT NULL                           |
+| quantity      | DECIMAL(5,2) | NOT NULL                           |
